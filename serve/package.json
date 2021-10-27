@@ -7,7 +7,7 @@
     "dev": "nodemon ./app.js"
   },
   "dependencies": {
-    "dayjs": "^1.10.7",
+    "dayjs": "1.10.6",
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
     "nodemon": "^2.0.14"
