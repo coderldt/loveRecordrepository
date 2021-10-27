@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { isEmity, moodStatusVali, timeVali } = require('../validator/index')
+const { isEmity, moodStatusVali, timeVali, timeRangeVali } = require('../validator/index')
 const dayjs = require('dayjs')
 
 const mood = require('../models/moods')
@@ -12,9 +12,9 @@ router.post('/create', (req, res) => {
     }
 
     // // time 不为空 则检测是否通过
-    // if (time && !timeVali(time)) {
-    //     return res.send({ status: 400, msg: '时间格式错误', data: null })
-    // }
+    if (time && !timeVali(time)) {
+        return res.send({ status: 400, msg: '时间格式错误', data: null })
+    }
 
     const detail = {
         status,
@@ -49,7 +49,7 @@ router.post('/remove', (req, res) => {
             res.send({ status: 400, msg: '找不到当前信息', data: null })
         }
     })
-})
+}) 
 
 router.post('/list', async (req, res) => {
     // asd 正序
@@ -59,9 +59,9 @@ router.post('/list', async (req, res) => {
         return res.send({ status: 400, msg: '心情状态错误', data: null })
     }
 
-    // if (isEmity(id)) {
-    //     return res.send({ status: 400, msg: '找不到当前信息', data: null })
-    // }
+    if (!timeRangeVali(time)) {
+        return res.send({ status: 400, msg: '筛选时间错误', data: null })
+    }
 
     const params = {}
     status && (params.status = status)

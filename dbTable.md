@@ -1,4 +1,4 @@
-## userTable (预留测试账户)
+## userTable (预留测试账户) (接口已完成)
 | 用户名   | 密码 | 手机号 | 头像 | id |
 | username | password | phone | avatarUrl | id |
 
@@ -73,13 +73,14 @@
     ]
 }
 
-## moodGroup 心情表
+## moodGroup 心情表 (开发中)
 {
     list: [
         {
             time: '',
             status: '1|2|3',
-            desc: ''
+            desc: '',
+            type: '1|2' // 1 及时 2 补充
         }
     ]
 }
