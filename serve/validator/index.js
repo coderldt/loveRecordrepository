@@ -1,3 +1,5 @@
+const dayjs = require("dayjs")
+
 const isEmity = (data) => {
     switch ( Object.prototype.toString.call(data) ) {
         case '[object String]':
@@ -15,8 +17,12 @@ const isEmity = (data) => {
     }
 }
 
-// const vailPassword = (password) => {
+const moodStatusVali = (status) => {
+    return [1, 2, 3, '1', '2', '3'].includes(status)
+}
 
-// }
+const timeVali = (time) => {
+    return dayjs(time).isValid()
+}
 
-module.exports = { isEmity }
+module.exports = { isEmity, moodStatusVali, timeVali }
