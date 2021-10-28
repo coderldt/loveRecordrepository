@@ -85,7 +85,7 @@
     ]
 }
 
-## noteGroup 备忘录
+## noteGroup 备忘录 (接口已完成)
 {
     list: [
         {
