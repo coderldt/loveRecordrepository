@@ -5,7 +5,10 @@
 
 ## detailGroup
 {
-    startTime: '',
+    sign: 'iitoipo'
+    detail: {
+        startTime: '',
+    }
     user: [
         {
             username: '',

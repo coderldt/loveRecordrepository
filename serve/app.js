@@ -13,6 +13,7 @@ app.use('/user', require('./routes/userTables'))
 app.use('/mood', require('./routes/mood'))
 app.use('/record', require('./routes/record'))
 app.use('/note', require('./routes/note'))
+app.use('/detail', require('./routes/detail'))
 
 app.listen(3000, () => {
     console.log(`Example app listening at http://localhost:3000`)
