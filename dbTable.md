@@ -3,7 +3,7 @@
 | username | password | phone | avatarUrl | id |
 
 
-## detailGroup
+## detailGroup (接口已完成)
 {
     sign: 'iitoipo'
     detail: {
