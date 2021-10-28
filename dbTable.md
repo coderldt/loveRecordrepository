@@ -56,7 +56,7 @@
     ]
 }
 
-## recordGroup 记录(纪念)表
+## recordGroup 记录(纪念)表 (接口已完成)
 {
     descriptions: [
         { createTime: '', content: '' }
@@ -73,7 +73,7 @@
     ]
 }
 
-## moodGroup 心情表 (开发中)
+## moodGroup 心情表 (接口已完成)
 {
     list: [
         {
