@@ -29,7 +29,7 @@
     ]
 }
 
-## photoGroup 相册
+## photoGroup 相册 (接口已完成, 评论暂弃)
 {
     list: [
         {
