@@ -1,11 +1,16 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const fileUpload = require('express-fileupload')
 
 require('./db') 
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+app.use(fileUpload({
+    tempFileDir : './upload/img/tem/'
+}))
 
 app.use('/static', express.static(path.resolve(__dirname, 'static')))
 app.use('/upload', express.static(path.resolve(__dirname, 'upload')))
