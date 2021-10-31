@@ -27,8 +27,12 @@
     # 允许外部访问，127.0.0.1仅本机可访问
     bind_ip = 0.0.0.0
 ```
-+ 启动 ./mongod -r ./mongodb.conf 
++ 启动 ./mongod -f ./mongodb.conf 
 
+### 查看当前端口
++ netstat -lang | grep mongod
++ netstat -lang | grep 27017
++ ps -ef | grep 27017
 
 ### 备份数据库
 + 备份
