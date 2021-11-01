@@ -6,22 +6,31 @@ const dayjs = require('dayjs')
 
 const cancelRepeat = (md5Val, dir) => {
     return new Promise((resolve, reject) => {
-        fs.readdir(dir, (err, files) => {
-            if (err) {
-                reject(false)
-            } else {
-                files.forEach(item => {
-                    try {
-                        const data = fs.readFileSync(`${dir}/${item}`)
-                        if (md5(data) === md5Val) {
-                            resolve(`${dir}/${item}`)
+        fs.access(dir, (e, data) => {
+            if (e) {
+                try {
+                    fs.mkdirSync(dir)
+                } catch (error) {
+                    reject(false)              
+                }
+            } 
+            fs.readdir(dir, (err, files) => {
+                if (err) {
+                    reject(false)
+                } else {
+                    files.forEach(item => {
+                        try {
+                            const data = fs.readFileSync(`${dir}/${item}`)
+                            if (md5(data) === md5Val) {
+                                resolve(`${dir}/${item}`)
+                            }
+                        } catch (error) {
+                            reject(false)
                         }
-                    } catch (error) {
-                        reject(false)
-                    }
-                })
-                resolve('')
-            }
+                    })
+                    resolve('')
+                }
+            })
         })
     })
 }
