@@ -71,3 +71,7 @@
 + sudo ufw enable 开启防火墙
 + sudo ufw status verbos 
 [连接](https://blog.csdn.net/weixin_34479122/article/details/116634913)
+
++ 开启默认ssh22端口
++ sudo ufw allow 22
++ sudo ufw enable
