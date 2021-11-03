@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://180.76.173.85/loveRecords');
+mongoose.connect('mongodb://180.76.173.85:27017/loveRecords');
 // mongoose.connect('mongodb://localhost:27017/loveRecords');
 
 const db = mongoose.connection;

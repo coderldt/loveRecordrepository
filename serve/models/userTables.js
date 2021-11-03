@@ -5,6 +5,8 @@ const userTablesSchema = mongoose.Schema({
     password: String,
     phone: String,
     avatarUrl: String,
+    token: String,
+    expirationTime: Date
 }, { collection: 'userTables' })
 
 userTablesSchema.statics.findObjOfUsername = function (username, cb) {

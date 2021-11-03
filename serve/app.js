@@ -14,8 +14,10 @@ app.use(fileUpload({
     tempFileDir : './upload/img/tem/'
 }))
 
+// app.use('/', require('./middle/valiToken'))
 app.use('/static', express.static(path.resolve(__dirname, 'static')))
 app.use('/upload', express.static(path.resolve(__dirname, 'upload')))
+app.use('/api', require('./routes/login'))
 app.use('/user', require('./routes/userTables'))
 app.use('/mood', require('./routes/mood'))
 app.use('/record', require('./routes/record'))
