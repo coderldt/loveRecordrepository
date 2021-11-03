@@ -26,6 +26,7 @@
 </template>
 
 <script>
+	import { login } from '../../apis/login.js'
 	export default {
 		data() {
 			return {
@@ -38,13 +39,27 @@
 			}
 		},
 		methods: {
-			onsubmit() {
+			async onsubmit() {
+				const status = this.loginVali()
+				if (status) {
+					try{
+						const res = await login({ url: '/api/login', data: this.login })
+						console.log(res);
+					}catch(e){
+						console.log(e);
+						//TODO handle the exception
+					}
+					
+				}
+			},
+			loginVali() {
 				if (!this.login.username || !this.login.password) {
-					return this.$refs.uToast.show({
+					this.$refs.uToast.show({
 						title: '请先输入用户名或密码',
 						type: 'warning',
 						duration: 2000
 					})
+					return false
 				}
 				
 				if (!this.noticeStatus) {
@@ -60,10 +75,10 @@
 					setTimeout(() => {
 						this.isShake = false
 					}, 5000)
-					
-					return
+					return false
 				}
-				console.log(this.login);
+				
+				return true
 			},
 			onQuickLogin () {
 				this.$refs.uToast.show({
