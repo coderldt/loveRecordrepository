@@ -14,7 +14,7 @@
 				</div> -->
 				<u-input v-model="login.username" focus placeholder="请输入用户名"/>
 				<u-input v-model="login.password" type="password" password-icon placeholder="请输入密码"/>
-				<u-button :type="isInput" size="default" plain @click="onsubmit">登录</u-button>
+				<u-button :type="isInput" size="default" plain @click="onsubmit" hair-line>登录</u-button>
 				<span class="quickLogin" @click="onQuickLogin" >快捷登录</span>
 			</div>
 		</div>
@@ -98,7 +98,7 @@
 			h2 {
 				font-size: 42rpx;
 				font-weight: 600;
-				padding: 5vh 0 4vh;
+				padding: 6vh 0 4vh;
 			}
 			
 			.u-input {
@@ -107,7 +107,7 @@
 			}
 			
 			.u-btn {
-				margin: 1em 0;
+				margin: 2em 0 1em;
 			}
 			
 			.quickLogin {
