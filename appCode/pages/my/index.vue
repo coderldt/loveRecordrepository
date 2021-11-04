@@ -1,7 +1,7 @@
 <template>
 	<div>
 		3
-		<u-tabbar :list="tabbars" :mid-button="true"></u-tabbar>
+		<u-tabbar :list="tabbars" :mid-button="true" activeColor="#5098ff"></u-tabbar>
 	</div>
 </template>
 

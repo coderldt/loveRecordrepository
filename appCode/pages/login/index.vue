@@ -31,10 +31,10 @@
 		data() {
 			return {
 				login: {
-					username: '',
-					password: ''
+					username: 'admin',
+					password: '123456'
 				},
-				noticeStatus: false,
+				noticeStatus: true,
 				isShake: false
 			}
 		},
@@ -43,11 +43,25 @@
 				const status = this.loginVali()
 				if (status) {
 					try{
-						const res = await login({ url: '/api/login', data: this.login })
-						console.log(res);
+						const res = await login(this.login)
+						const { id, phone, username, token } = res
+						uni.setStorageSync('userInfo', JSON.stringify({ id, phone, username }));
+						uni.setStorageSync('token', token)
+						
+						this.$refs.uToast.show({
+							title: '登录成功',
+							type: 'success',
+							duration: 2000,
+							isTab: true,
+							url: '/pages/home/index'
+						})
 					}catch(e){
 						console.log(e);
-						//TODO handle the exception
+						this.$refs.uToast.show({
+							title: '登录失败',
+							type: 'error',
+							duration: 2000,
+						})
 					}
 					
 				}

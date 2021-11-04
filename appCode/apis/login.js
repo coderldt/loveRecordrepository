@@ -1,7 +1,7 @@
 import axios from './axios.js'
 
-function login (params) {
-	return axios.post(params)
+function login (data) {
+	return axios.post({ url: '/api/login', data})
 }
 
 export { login }

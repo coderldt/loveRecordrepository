@@ -14,7 +14,9 @@
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+				"navigationBarBackgroundColor":"#d5d0cc",
+				"navigationBarTextStyle":"white"
 			}
 		},
 		{
@@ -32,14 +34,15 @@
 		        "navigationBarTitleText": "历程",
 		        "enablePullDownRefresh": false
 		    }
-		},{
-            "path" : "pages/login/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-        }
+		},
+		{
+		    "path" : "pages/login/index",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		}
     ],
 	"subPackages": [
 	],
