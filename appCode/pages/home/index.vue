@@ -3,8 +3,8 @@
 		<div class="content">
 			<div class="baseMsg" >
 				<div class="img" v-if="userList.length !== 0">
-					<u-image class="man" :src="userList[0].avatar" width="120rpx" height="120rpx" mode="aspectFill" border-radius="10"></u-image>
-					<u-image class="woman" :src="userList[1].avatar" width="120rpx" height="120rpx" mode="aspectFill"  border-radius="10"></u-image>
+					<u-image class="man" :src="BASE_URL + userList[0].avatar" width="120rpx" height="120rpx" mode="aspectFill" border-radius="10"></u-image>
+					<u-image class="woman" :src="BASE_URL + userList[1].avatar" width="120rpx" height="120rpx" mode="aspectFill"  border-radius="10"></u-image>
 				</div>
 				<div class="time" >
 					始于：{{ detail.startTime || '' }}
@@ -22,28 +22,31 @@
 			</div>
 		</div>
 		<u-tabbar :list="tabbars" :mid-button="true" activeColor="#5098ff"></u-tabbar>
+		<u-toast ref="uToast" />
 	</div>
 </template>
 
 <script>
 	import { mapState } from 'vuex'
 	import { getDetail } from '../../apis/home.js'
+	import { BASE_URL } from '../../config/index.js'
 	export default {
 		data() {
 			return {
 				userList: [],
 				detail: {},
 				dayCount: '',
-				img: '', 
+				img: '',
+				BASE_URL,
 				modulesList: [
-					{ img: 'http://180.76.173.85/upload/img/2021-11-04/memorandum.png', title: "备忘录", desc: "代办事项", path: '', back: '#1ad06b' },
-					{ img: 'http://180.76.173.85/upload/img/2021-11-04/pics.png', title: "相册", desc: "记录每一点", path: '', back: '#2b9ce1' },
-					{ img: 'http://180.76.173.85/upload/img/2021-11-04/hert.png', title: "心情", desc: "记录每日心情记录每日心情", path: '', back: "#334961" },
+					{ img: BASE_URL + '/upload/img/2021-11-04/memorandum.png', title: "备忘录", desc: "代办事项", path: '', back: '#1ad06b' },
+					{ img: BASE_URL + '/upload/img/2021-11-04/pics.png', title: "相册", desc: "记录每一点", path: '', back: '#2b9ce1' },
+					{ img: BASE_URL + '/upload/img/2021-11-04/hert.png', title: "心情", desc: "记录每日心情记录每日心情", path: '', back: "#334961" },
 					{ img: '', title: "", desc: "", path: '', back: "#a258bb" },
 					{ img: '', title: "", desc: "", path: '', back: "#f0c101" },
 					{ img: '', title: "", desc: "", path: '', back: "#94a3a2" },
 				],
-				bacgGround: 'http://180.76.173.85/upload/img/2021-11-04/backgroung.png'
+				bacgGround: BASE_URL + '/upload/img/2021-11-04/backgroung.png'
 			}
 		},
 		computed: {
@@ -60,7 +63,8 @@
 				}
 			},
 		},
-		created() {
+		
+		onShow() {
 			this.getData()
 		}
 	}

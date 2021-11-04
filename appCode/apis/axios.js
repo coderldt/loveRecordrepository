@@ -1,5 +1,4 @@
-const BASE_URL = 'http://180.76.173.85' // 服务器
-// const BASE_URL = 'http://localhost:3000' // 开发
+import { BASE_URL } from '../config/index.js'
 
 const hanlderResponse = (res) => {
 	const { status, data, msg } =  res.data
@@ -8,10 +7,19 @@ const hanlderResponse = (res) => {
 		case 200:
 			return data
 		case 401:
-			// return this.$refs.uToast.show({
-			// 	title: msg,
-			// 	url: '/pages/login/index',
-			// })
+			 uni.showToast({
+				title: msg,
+				duration: 1500,
+				icon: "none",
+				success() {
+					setTimeout(() => {
+						uni.navigateTo({
+							url: "/pages/login/index",
+						})
+					}, 2000)
+				}
+			});
+			return
 		default :
 			return data
 	}
@@ -35,7 +43,7 @@ const ajax = {
 		const { url, data } = params
 		return this.ajax({ url, data, method: 'POST' })
 	},
-	ajax({ url, method = 'GET', data, header = {} }) {
+	ajax({ url, method = 'GET', data = {}, header = {} }) {
 		return new Promise((resolve, reject) => {
 			let token = null
 			try{
@@ -44,7 +52,12 @@ const ajax = {
 				reject(false)
 			}
 			token && (header.token = token)
-			
+			console.log({
+				method,
+				url: `${BASE_URL}${url}`,
+				data,
+				header,
+			});
 			uni.request({
 				method,
 				url: `${BASE_URL}${url}`,

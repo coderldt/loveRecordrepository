@@ -20,7 +20,8 @@ router.post('/login', async (req, res) => {
 
         const now = dayjs().format("YYYY-MM-DD HH:ss:mm")
         data.token = md5(now)
-        data.expirationTime = dayjs().add(8, 'hours').format("YYYY-MM-DD HH:ss:mm")
+        console.log(dayjs().add(1, 'day').format("YYYY-MM-DD HH:ss:mm"));
+        data.expirationTime = dayjs().add(1, 'day').format("YYYY-MM-DD HH:ss:mm")
 
         await data.save()
         const { _id: id, phone, avatarUrl, token } = data

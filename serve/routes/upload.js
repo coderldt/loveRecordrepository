@@ -21,6 +21,7 @@ const cancelRepeat = (md5Val, dir) => {
                     files.forEach(item => {
                         try {
                             const data = fs.readFileSync(`${dir}/${item}`)
+                            console.log(dir, item);
                             if (md5(data) === md5Val) {
                                 resolve(`${dir}/${item}`)
                             }
