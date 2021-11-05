@@ -12,6 +12,12 @@
 	// },
 	"pages": [
 		{
+			"path": "pages/photo/index",
+			"style": {
+				"navigationBarTitleText": "相册"
+			}
+		},
+		{
 			"path": "pages/home/index",
 			"style": {
 				"navigationBarTitleText": "首页",
