@@ -1,7 +1,11 @@
 import axios from './axios.js'
 
 function getPhotoList (params) {
-	return axios.post({ url: '/photo/list'})
+	return axios.post({ url: '/photo/list', data: params})
 }
 
-export { getPhotoList }
+function addPhotoItem (data) {
+	return axios.post({ url: '/photo/create', data})
+}
+
+export { getPhotoList, addPhotoItem }

@@ -458,16 +458,21 @@
 						// switch: show //是否是切换年月操作
 					});
 				} else {
-					if (!this.startDate || !this.endDate) return;
-					let startMonth = this.formatNum(this.startMonth);
-					let startDay = this.formatNum(this.startDay);
-					let startDate = `${this.startYear}-${startMonth}-${startDay}`;
-					let startWeek = this.getWeekText(startDate)
-
-					let endMonth = this.formatNum(this.endMonth);
-					let endDay = this.formatNum(this.endDay);
-					let endDate = `${this.endYear}-${endMonth}-${endDay}`;
-					let endWeek = this.getWeekText(endDate);
+					let startMonth, startDay, startDate, startWeek, endMonth, endDay, endDate, endWeek;
+					if (this.startDate) {
+						startMonth = this.formatNum(this.startMonth);
+						startDay = this.formatNum(this.startDay);
+						startDate = `${this.startYear}-${startMonth}-${startDay}`;
+						startWeek = this.getWeekText(startDate)
+					}
+					
+					if (this.endDate) {
+						endMonth = this.formatNum(this.endMonth);
+						endDay = this.formatNum(this.endDay);
+						endDate = `${this.endYear}-${endMonth}-${endDay}`;
+						endWeek = this.getWeekText(endDate);
+					}
+					
 					this.$emit('change', {
 						startYear: this.startYear,
 						startMonth: this.startMonth,

@@ -12,17 +12,17 @@
 	// },
 	"pages": [
 		{
-			"path": "pages/photo/index",
-			"style": {
-				"navigationBarTitleText": "相册"
-			}
-		},
-		{
 			"path": "pages/home/index",
 			"style": {
 				"navigationBarTitleText": "首页",
 				"navigationBarBackgroundColor":"#d5d0cc",
 				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/photo/index",
+			"style": {
+				"navigationBarTitleText": "相册"
 			}
 		},
 		{
@@ -40,6 +40,12 @@
 		        "navigationBarTitleText": "历程",
 		        "enablePullDownRefresh": false
 		    }
+		},
+		{
+			"path": "pages/photo/addPhotoItem",
+			"style": {
+				"navigationBarTitleText": "添加图片"
+			}
 		},
 		{
 		    "path" : "pages/login/index",

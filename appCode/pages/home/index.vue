@@ -12,7 +12,7 @@
 				<div class="afterDay" >已经 {{ dayCount }} 天</div>
 			</div>
 			<div class="module" >
-				<div class="moduleItem" v-for="(item,index) in modulesList" :key="index" :style="{ background: item.back }">
+				<div class="moduleItem" v-for="(item,index) in modulesList" :key="index" @click="switchModule(item.path)" :style="{ background: item.back }">
 					<u-image class="icon" v-if="item.img" :src="item.img" width="90rpx" height="90rpx"></u-image>
 					<div class="msg u-flex-1" >
 						<div class="title u-line-1">{{item.title}}</div>
@@ -40,7 +40,7 @@
 				BASE_URL,
 				modulesList: [
 					{ img: BASE_URL + '/upload/img/2021-11-04/memorandum.png', title: "备忘录", desc: "代办事项", path: '', back: '#1ad06b' },
-					{ img: BASE_URL + '/upload/img/2021-11-04/pics.png', title: "相册", desc: "记录每一点", path: '', back: '#2b9ce1' },
+					{ img: BASE_URL + '/upload/img/2021-11-04/pics.png', title: "相册", desc: "记录每一点", path: '/pages/photo/index', back: '#2b9ce1' },
 					{ img: BASE_URL + '/upload/img/2021-11-04/hert.png', title: "心情", desc: "记录每日心情记录每日心情", path: '', back: "#334961" },
 					{ img: '', title: "", desc: "", path: '', back: "#a258bb" },
 					{ img: '', title: "", desc: "", path: '', back: "#f0c101" },
@@ -62,6 +62,11 @@
 					this.dayCount = res.dayCount
 				}
 			},
+			switchModule(path) {
+				path && uni.navigateTo({
+					url: path
+				})
+			}
 		},
 		
 		onShow() {
