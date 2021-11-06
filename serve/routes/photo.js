@@ -110,9 +110,9 @@ router.post('/list', async (req, res) => {
             })
 
             res.send({ status: 200, msg: `查询成功`, data: { 
-                list: finalData.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)},
+                list: finalData.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize),
                 total: finalData.length
-            })
+            }})
         } else {
             res.send({ status: 400, msg: '找不到当前信息', data: null })
         }
