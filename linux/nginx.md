@@ -75,3 +75,7 @@
 + 开启默认ssh22端口
 + sudo ufw allow 22
 + sudo ufw enable
+
+<!-- 开启ssh端口 -->
++ /etc/ssh/
++ sudo /etc/init.d/ssh restart

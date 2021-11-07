@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
+
 app.use(cors())
 
 require('./db') 
@@ -14,7 +15,7 @@ app.use(fileUpload({
     tempFileDir : './upload/img/tem/'
 }))
 
-// app.use('/', require('./middle/valiToken'))
+app.use('/', require('./middle/valiToken'))
 app.use('/static', express.static(path.resolve(__dirname, 'static')))
 app.use('/upload', express.static(path.resolve(__dirname, 'upload')))
 app.use('/api', require('./routes/login'))

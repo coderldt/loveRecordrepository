@@ -20,6 +20,13 @@ const hanlderResponse = (res) => {
 				}
 			});
 			return
+		case 403:
+			uni.showToast({
+				title: msg,
+				duration: 1500,
+				icon: "none",
+			})
+			break
 		default :
 			return data
 	}
@@ -52,12 +59,6 @@ const ajax = {
 				reject(false)
 			}
 			token && (header.token = token)
-			console.log({
-				method,
-				url: `${BASE_URL}${url}`,
-				data,
-				header,
-			});
 			uni.request({
 				method,
 				url: `${BASE_URL}${url}`,

@@ -10,7 +10,7 @@
 					<u-input type="textarea" :border="border" placeholder="请填写描述, 选填" v-model="form.desc" />
 				</u-form-item>
 				<u-form-item label-position="left" label="上传图片" label-width="120">
-					<u-upload ref="uUpload" width="160" height="160" :action="action" :auto-upload="false" @on-uploaded="successUpload"></u-upload>
+					<u-upload ref="uUpload" width="160" height="160" :action="action" :header="header" :auto-upload="false" @on-uploaded="successUpload"></u-upload>
 				</u-form-item>
 				<div class="btn" >
 					<u-button class="upload" @click="upload">上传</u-button>
@@ -42,6 +42,7 @@
 						}
 					]
 				},
+				header: {},
 				action: BASE_URL + '/upload',
 				list: ['标题和图片是必填；请先选择图片，点击上传，最后点击提交。']
 			}
@@ -83,6 +84,8 @@
 			}
 		},
 		onReady() {
+			const token = uni.getStorageSync('token')
+			token && (this.header.token = token)
 			this.$refs.uForm.setRules(this.rules);
 		}
 	}
