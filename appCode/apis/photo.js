@@ -8,4 +8,8 @@ function addPhotoItem (data) {
 	return axios.post({ url: '/photo/create', data})
 }
 
-export { getPhotoList, addPhotoItem }
+function removePhotoPics (data) {
+	return axios.post({ url: '/photo/removePic', data})
+}
+
+export { getPhotoList, addPhotoItem, removePhotoPics }
