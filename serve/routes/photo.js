@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const dayjs = require('dayjs')
-const { isEmity, timeRangeVali } = require('../validator/index')
+const { timeRangeVali } = require('../validator/index')
 
 const photo = require('../models/photo')
 
@@ -30,40 +30,51 @@ router.post('/create', (req, res) => {
 })
 
 router.post('/removePic', async (req, res) => {
-    const { id, pic } = req.body
-    if (isEmity(id)) {
-        return res.send({ status: 400, msg: '找不到对应数据', data: null })
+    const { list } = req.body
+    if (!list.length) {
+        return res.send({ status: 400, msg: '请选择删除的图片', data: null })
     }
 
-    if (isEmity(pic)) {
-        return res.send({ status: 400, msg: '请选择要删除的图片', data: null })
-    }
-
-    let data = null
-    try {
-        data = await photo.findObjOfId(id)
-    } catch (error) {
-        console.log(error);
-        return res.send({ status: 400, msg: '找不到对应数据', data: null })
-    }
-    if (data) {
-        data.pics = data.pics.filter(item => item !== pic)
-        const cb = (err, data) => {
-            if (err) {
-                console.log(err);
-                res.send({ status: 200, msg: `出错了`, data: err })
-            }else {
-                res.send({ status: 200, msg: `删除成功`, data: null })
-            }
-        }
-        if (data.pics.length === 0) {
-            photo.findByIdAndRemove(id, cb)
+    let obj = {}
+    list.forEach(item => {
+        const { id, img } = item
+        if (obj[id]) {
+            obj[id].push(img)
         } else {
-            data.save(cb)
+            obj[id] = [img]
         }
-    } else {
-        res.send({ status: 400, msg: `出错了`, data: err })
-    }
+    });
+
+    Object.entries(obj).forEach(async ([id, pics]) => {
+        let data = null
+        try {
+            data = await photo.findObjOfId(id)
+        } catch (error) {
+            console.log(error);
+            return res.send({ status: 400, msg: '找不到对应数据', data: null })
+        }
+        if (data) {
+            pics.forEach(pic => {
+                console.log(data.pics);
+                data.pics = data.pics.filter(item => item !== pic)
+            })
+            
+            const cb = (err, data) => {
+                if (err) {
+                    console.log(err);
+                    res.send({ status: 200, msg: `出错了`, data: err })
+                }
+            }
+            if (data.pics.length === 0) {
+                photo.findByIdAndRemove(id, cb)
+            } else {
+                data.save(cb)
+            }
+        } else {
+            res.send({ status: 400, msg: `出错了`, data: err })
+        }
+    })
+    res.send({ status: 200, msg: `删除成功`, data: null })
 })
 
 // 只支持到天time
@@ -109,9 +120,16 @@ router.post('/list', async (req, res) => {
                 })
             })
 
+            let totalPic = 0
+            const totalDay = await photo.find()
+            totalDay.forEach(i => {
+                totalPic += i.pics.length
+            })
+
             res.send({ status: 200, msg: `查询成功`, data: { 
                 list: finalData.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize),
-                total: finalData.length
+                total: finalData.length,
+                totalPic
             }})
         } else {
             res.send({ status: 400, msg: '找不到当前信息', data: null })
